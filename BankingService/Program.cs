@@ -266,6 +266,46 @@ class Program
                     }
 
                     break;
+                case 3:
+                    option = 1;
+                    while (option != 0)
+                    {
+                        
+                    }
+                    
+                    break;
+                case 4:
+                    while (option != 0)
+                    {
+                        
+                    }
+                    
+                    break;
+                case 5:
+                    while (option != 0)
+                    {
+                        
+                    }
+                    
+                    break;
+                case 6:
+                    while (option != 0)
+                    {
+                        
+                    }
+                    
+                    break;
+                case 7:
+                    while (option != 0)
+                    {
+                        
+                    }
+                    
+                    break;
+                case 0:
+                    
+                    break;
+            
             }
 
 
