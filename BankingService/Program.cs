@@ -8,6 +8,8 @@ class Program
     static void Main(string[] args)
     {
         int option = 0;
+        int ATMOptions = 0;
+
         // Account Profile
         int accountNumber = 0;
         string holderName = "[Not Set]";
@@ -64,7 +66,7 @@ class Program
             case 3:
                 Console.WriteLine("Enter balance (OMR): ");
                 balance = double.Parse(Console.ReadLine());
-                Console.WriteLine("Balance set to: " + balance);
+                Console.WriteLine("Balance set to: " + balance + "OMR");
                 break;
             case 4:
                 Console.WriteLine("is your Account Active (0 = False, 1 = True)");
@@ -113,12 +115,88 @@ class Program
                 }
                 Console.WriteLine("emplyment status set to: " + isEmployed);
                 break;
+            case 7:
+                Console.WriteLine("Enter your salary: ");
+                salary = double.Parse(Console.ReadLine());
+                Console.WriteLine("salary is set to :" + salary + "OMR");
+                break;
+            case 8:
+                Console.WriteLine("Enter you credit Score: ");
+                creditScore = int.Parse(Console.ReadLine());
+                Console.WriteLine("credit score is set to :" + creditScore);
+                break;
+            case 9:
+                Console.WriteLine("Enter your age");
+                age = int.Parse(Console.ReadLine());
+                Console.WriteLine("age is set to: " + age);
+                break;
+            case 10:
+                Console.WriteLine("Enter your last deposit amount ");
+                deposit = double.Parse(Console.ReadLine());
+                Console.WriteLine("deposit amount is set to " + deposit + "OMR");
+                break;
+            case 11:
+                Console.WriteLine("Enter your last withdrawl amount ");
+                withdrawal = double.Parse(Console.ReadLine());
+                Console.WriteLine("withdrawl amount is set to " + withdrawal + "OMR");
+                break;
+            case 12:
+                Console.WriteLine("enter you annual rate");
+                annualRate = int.Parse(Console.ReadLine());
+                Console.WriteLine("annual rate is set to " + annualRate + "OMR");
+                break;
+            case 13:
+                Console.WriteLine("enter your average monthly balance");
+                avgBalance = double.Parse(Console.ReadLine());
+                Console.WriteLine("the average montly balance is set to " + avgBalance + "OMR");
+                break;
             case 0:
                 Console.WriteLine("Setup complete. Launching Main Menu...");
                 break;
+            default:
+                Console.WriteLine("Invalid selection. Please try again.");
+                break;
+
         }
+        //Task 2
+        Console.WriteLine("=== ATM SERVICES ===");
+        Console.WriteLine("");
+        Console.WriteLine("1) Bank Info");
+        Console.WriteLine("");
+        Console.WriteLine("2) Branch Info");
+        Console.WriteLine("");
+        Console.WriteLine("3) Opening Hours");
+        Console.WriteLine("");
+        Console.WriteLine("0) Back to Main Menu");
+        Console.WriteLine("");
+        Console.WriteLine("Select ");
+        ATMOptions = int.Parse(Console.ReadLine());
+        switch (ATMOptions)
+        {
+            case 1:
+                Console.WriteLine("Bank Name: National Bank of Oman");
+                Console.WriteLine("Tagline: Unlocking opportunities, as one.");
+                Console.WriteLine("Founding Year: 1973");
+                break;
+            case 2:
+                Console.WriteLine("Branch Name: Head Office");
+                Console.WriteLine("City: Muscat");
+                Console.WriteLine("Address: Al Azaiba, 18th November St, NBO Building");
+                break;
+            case 3:
+                Console.WriteLine("Weekday (Sunday – Thursday)  -  Working Hours: 8:00 AM – 2:00 PM");
+                Console.WriteLine("Weekend (Friday – Saturday)  -  Working Hours: Closed");
+                break;
+            case 0:
+                Console.WriteLine("Returning to Main Menu...");
+                break;
+            default:
+                Console.WriteLine("Invalid selection. Please try again.");
+                break;
 
 
+                
+        }
 
     }
 }
