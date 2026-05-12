@@ -173,20 +173,27 @@ class Program
         ATMOptions = int.Parse(Console.ReadLine());
         switch (ATMOptions)
         {
+            //printing bank info
             case 1:
                 Console.WriteLine("Bank Name: National Bank of Oman");
                 Console.WriteLine("Tagline: Unlocking opportunities, as one.");
                 Console.WriteLine("Founding Year: 1973");
                 break;
+            //printing branch info
+
             case 2:
                 Console.WriteLine("Branch Name: Head Office");
                 Console.WriteLine("City: Muscat");
                 Console.WriteLine("Address: Al Azaiba, 18th November St, NBO Building");
                 break;
+            //printing working hours info
+
             case 3:
                 Console.WriteLine("Weekday (Sunday – Thursday)  -  Working Hours: 8:00 AM – 2:00 PM");
                 Console.WriteLine("Weekend (Friday – Saturday)  -  Working Hours: Closed");
                 break;
+            //printing working hours info
+
             case 0:
                 Console.WriteLine("Returning to Main Menu...");
                 break;
