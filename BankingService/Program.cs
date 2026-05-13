@@ -13,7 +13,8 @@ class Program
         int ATMOptions = 1;
         int bankOptions = 1;
 
-        // Account Profile
+        // Account Profile0
+        
         int accountNumber = 0;
         string holderName = "[Not Set]";
         double balance = 0.000;
@@ -362,7 +363,10 @@ class Program
               }
           }
 
-          if (transactionIsTriggerd = true)
+    
+
+      }
+           if (transactionIsTriggerd = true)
           {
               Console.WriteLine("=== AUTHENTICATION ===");
               Console.WriteLine("");
@@ -374,7 +378,7 @@ class Program
               Console.WriteLine("");
               Console.WriteLine("Select: _");
               int pin = 1;
-              while (userLoggedIn == false)
+              while (userLoggedIn == false && MaxAttempts > 0)
               {
                   switch (PinOptions)
                   {
@@ -392,20 +396,18 @@ class Program
                               Console.WriteLine("Invalid PIN Format");
 
                           }
-                          else if (pin != correctPin && MaxAttempts > 0)
+                          else if (pin != correctPin && MaxAttempts >= 1)
                           {
                               MaxAttempts = MaxAttempts - 1;
                               Console.WriteLine("try again, remaining Attempts: " + MaxAttempts);
                               userLoggedIn = false;
-
+                             
+                              if (MaxAttempts == 0)
+                              {
+                                  Console.WriteLine("card is blocked, please visit your nearest branch");
+                                  userLoggedIn = false;
+                              }
                           }
-                          else
-                          {
-                              Console.WriteLine("card is blocked, please visit your nearest branch");
-                              userLoggedIn = false;
-
-                          }
-
                           break;
                       case 2:
                           Console.WriteLine("Please visit the nearest branch with your National ID.");
@@ -415,9 +417,44 @@ class Program
                           break;
                   }
               }
-          }
-
-      }
-
+          } 
+           
+           
+           //Task5
+           
+           Console.WriteLine("=== PRINT RECEIPT ===");
+           Console.WriteLine("");
+           Console.WriteLine("1) Short Receipt");
+           Console.WriteLine("");
+           Console.WriteLine("2) Detailed Receipt");
+           Console.WriteLine("");
+           Console.WriteLine("3) Balance Only");
+           Console.WriteLine("");
+           Console.WriteLine("0) Back");
+           Console.WriteLine("");
+           Console.WriteLine("Select format: _");
+           int printOptions = int.Parse(Console.ReadLine());
+           switch (printOptions)
+           {
+               case 1:
+                   Console.WriteLine("holder Name:  " + holderName + "Account" + accountNumber + $"balance : {balance:N3}");
+                   break;
+               case 2:
+                   Console.WriteLine("Account:  " + accountNumber);
+                   Console.WriteLine("");
+                   Console.WriteLine("Name:  " + holderName);
+                   Console.WriteLine("");
+                   Console.WriteLine($"Balance: {balance:N3} " + "OMR");
+                   break;
+               case 3:
+                   Console.WriteLine($"Balance: {balance:N3} " + "OMR");
+                   break;
+               case 0:
+                   Console.WriteLine("Returning to ATM Services...");
+                   break;
+               default:
+                   Console.WriteLine("'Invalid receipt format.'");
+                   break;
+           }
     }
     }
