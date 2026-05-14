@@ -5,9 +5,9 @@ class Program
     static void Main(string[] args)
     {
     
-        {
+        
             
-        }
+        
         
         int option = 1;
         int ATMOptions = 1;
@@ -130,7 +130,7 @@ class Program
               case 2:
                   //Task1
                   option = 1;
-                  while (option != 0)
+                  do
                   {
                       Console.WriteLine("--- Account Profile ---");
 
@@ -270,7 +270,7 @@ class Program
                               break;
 
                       }
-                  }
+                  } while (option != 0);
 
                   break;
               case 3:
@@ -335,7 +335,7 @@ class Program
               Console.WriteLine("0) Back");
               Console.WriteLine("");
               Console.WriteLine("Select field: _");
-              int accDataNum = int.Parse(Console.ReadLine());
+              int accDataNum = Convert.ToInt32(Console.ReadLine());
               switch (accDataNum)
               {
                   case 1:
