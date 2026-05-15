@@ -1,4 +1,6 @@
-﻿namespace ClinicMananagment;
+﻿using System.Diagnostics;
+
+namespace ClinicMananagment;
 
 class Program
 {
@@ -77,16 +79,81 @@ class Program
                                     case 0:
                                         break;
                                     default:
+                                        
                                         break;
                                 }
                             }
           
                         case 2:
+                            while (true)
+                            {
+                                Console.Clear();
+                                Console.WriteLine("╔══════════════════════════════════════╗");
+                                Console.WriteLine("║        DOCTOR MANAGEMENT             ║");
+                                Console.WriteLine("╠══════════════════════════════════════╣");
+                                Console.WriteLine("║  1. Add New Doctor                   ║");
+                                Console.WriteLine("║  2. Display All Doctors              ║");
+                                Console.WriteLine("║  3. Update Consultation Fee          ║");
+                                Console.WriteLine("║  4. Delete Doctor                    ║");
+                                Console.WriteLine("║  0. Back to Main Menu                ║");
+                                Console.WriteLine("╚══════════════════════════════════════╝");
+                                Console.Write("Enter your choice: ");
+                                int doctorChoice = Convert.ToInt32(Console.ReadLine());
+                                switch (doctorChoice)
+                                {
+                                    case 1:
+                                        break;
+                                    case 2:
+                                        break;
+                                    case 3:
+                                        break;
+                                    case 4:
+                                        break;
+                                    case 0:
+                                        break;
+                                    default:
+                                        
+                                        break;
+                                }
+                            }
                             break;
                         
                         case 3:
+                            while (true)
+                            {
+                                Console.Clear();
+                                Console.WriteLine("╔══════════════════════════════════════╗");
+                                Console.WriteLine("║      APPOINTMENT MANAGEMENT          ║");
+                                Console.WriteLine("╠══════════════════════════════════════╣");
+                                Console.WriteLine("║  1. Book New Appointment             ║");
+                                Console.WriteLine("║  2. Display All Appointments         ║");
+                                Console.WriteLine("║  3. Update Appointment Status        ║");
+                                Console.WriteLine("║  4. Cancel Appointment               ║");
+                                Console.WriteLine("║  0. Back to Main Menu                ║");
+                                Console.WriteLine("╚══════════════════════════════════════╝");
+                                Console.Write("Enter your choice: ");
+                                int appointmentChoice = Convert.ToInt32(Console.ReadLine());
+                                switch (appointmentChoice)
+                                {
+                                    case 1:
+                                        break;
+                                    case 2:
+                                        break;
+                                    case 3:
+                                        break;
+                                    case 4:
+                                        break;
+                                    case 0:
+                                        break;
+                                    default:
+
+                                        break;
+                                }
+                            }
+
                             break;
                         case 0:
+                            Console.WriteLine("");
                             break;
                         default:
                             Console.WriteLine("do NOT exit the program");
