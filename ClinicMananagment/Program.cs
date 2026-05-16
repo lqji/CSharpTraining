@@ -46,9 +46,11 @@ class Program
                     Console.WriteLine("╚══════════════════════════════════════╝");
                     Console.Write("Enter your choice: ");
                     int mainChoice = Convert.ToInt32(Console.ReadLine());
+                    //Region 3 — Sub-Menus: one while loop per entity (inside the main menu switch-case case)
 
                     switch (mainChoice)
                     {
+                        // patient management view
                         case 1:
                             while (true)
                             {
@@ -63,27 +65,148 @@ class Program
                                 Console.WriteLine("║  0. Back to Main Menu                ║");
                                 Console.WriteLine("╚══════════════════════════════════════╝");
                                 Console.WriteLine("");
-                                Console.WriteLine("Enter your choice: ");
+                                Console.Write("Enter your choice: ");
                                 int patientChoice = Convert.ToInt32(Console.ReadLine());
                                 
                                 switch (patientChoice)
                                 {
-                                    case 1:
+                                    case 1: // Adding patients
+                                        
+                                        if (patientCount == MAX_PATIENTS)
+                                        {
+                                            Console.WriteLine("Clinic is full. Cannot add more patients.");
+                                            break;
+                                        }
+                                        
+                                        else
+                                        {
+                                            Console.Write("patient name: ");
+                                            string inputPatName = Console.ReadLine(); 
+                                            if (inputPatName == "")
+                                            {
+                                                Console.Write("error, invalid name");
+                                                break;
+                                            }
+                                            Console.Write("age: ");
+                                            int inputAge = Convert.ToInt32(Console.ReadLine());
+                                            if (inputAge < 1 || inputAge >= 120)
+                                            {
+                                                Console.WriteLine("error, invalid age");
+                                                break;
+                                            }
+                                            Console.Write("phone: ");
+                                            string inputPatPhone = Console.ReadLine();
+                                            if (!p1Active)
+                                            {
+                                                p1Name = inputPatName; p1Age = inputAge; p1Phone = inputPatPhone; p1Active = true;
+                                            }
+                                            else if (!p2Active)
+                                            {
+                                                p2Name = inputPatName; p2Age = inputAge; p2Phone = inputPatPhone; p2Active = true;
+                                            }
+                                            else if (!p3Active)
+                                            {
+                                                p3Name = inputPatName; p3Age = inputAge; p3Phone = inputPatPhone; p3Active = true;
+                                            }
+                                            Console.WriteLine("patient added Succefully");
+                                         
+
+
+                                            patientCount++;
+                                            break;
+
+                                        }
+                                    case 2: // Diplaying patients
+                                        if (patientCount == 0)
+                                        {
+                                            Console.WriteLine("No patients registered");
+                                            break;
+                                        }
+                                      
+                                        int num = 1;
+                                            if (p1Active) { Console.WriteLine(num + ". " + p1Name + "age: " + p1Age + "phone num: " + p1Phone); num++; }
+                                            if (p2Active) { Console.WriteLine(num + ". " + p2Name + "age: " + p2Age + "phone num: " + p2Phone); num++; }
+                                            if (p3Active) { Console.WriteLine(num + ". " + p3Name + "age: " + p3Age + "phone num: " + p3Phone); num++; }
                                         break;
-                                    case 2:
+                                    case 3: // Updating patient phone
+                                        Console.Write("Enter Patient Name: ");
+                                        string targtPatName = Console.ReadLine();
+                                        if (p1Active && p1Name == targtPatName)
+                                        {
+                                            Console.Write("Enter the patient new phone: ");
+                                            string newPatPhone = Console.ReadLine();
+                                            newPatPhone = p1Phone;
+                                            Console.WriteLine("phone Updated");
+                                        }
+                                        else if (p2Active && p2Name == targtPatName)
+                                        {
+                                            Console.Write("Enter the patient new phone: ");
+                                            string newPatPhone = Console.ReadLine();
+                                            newPatPhone = p2Phone;
+                                            Console.WriteLine("phone Updated");
+                                        }
+                                        else if (p3Active && p3Name == targtPatName)
+                                        {
+                                            Console.Write("Enter the patient new phone: ");
+                                            string newPatPhone = Console.ReadLine();
+                                            newPatPhone = p3Phone;
+                                            Console.WriteLine("phone Updated");
+                                        }
+                                        else
+                                        {
+                                            Console.WriteLine("Patient not found.");
+                                        }
                                         break;
-                                    case 3:
-                                        break;
-                                    case 4:
-                                        break;
-                                    case 0:
-                                        break;
-                                    default:
+                                    case 4: // Delete Patient
+                                        Console.Write("Enter patient number to delete it: ");
+                                        string delPatName = Console.ReadLine();
+                                        if (p1Active && delPatName == p1Name)
+                                        {
+                                            p1Active = false;
+                                            p1Name = "";
+                                            p1Age = 0;
+                                            p1Phone = "";
+                                            Console.WriteLine("patient deleted succesfully");
+                                        }
+                                        else if (p2Active && delPatName == p2Name)
+                                        {
+                                            p2Active = false;
+                                            p2Name = "";
+                                            p2Age = 0;
+                                            p2Phone = "";
+                                            Console.WriteLine("patient deleted succesfully");
+
+                                        }
+                                        else if (p3Active && delPatName == p3Name)
+                                        {
+                                            p3Active = false;
+                                            p3Name = "";
+                                            p3Age = 0;
+                                            p3Phone = "";
+                                            Console.WriteLine("patient deleted succesfully");
+
+                                        }
+                                        else
+                                        {
+                                            Console.WriteLine("patient not found");
+                                        }
                                         
                                         break;
+                                    case 0:
+                                        Console.WriteLine("going back to main menu... ");
+                                        break;
+                                    default:
+                                        Console.WriteLine("invalid input");
+                                        break;
                                 }
+                                Console.WriteLine("Press Enter to continue...");
+                                Console.ReadLine();
+                                if (patientChoice == 0) break;
+                                
                             }
-          
+
+                            break;
+                        // doctor management view
                         case 2:
                             while (true)
                             {
@@ -117,7 +240,7 @@ class Program
                                 }
                             }
                             break;
-                        
+                        //appointment management view
                         case 3:
                             while (true)
                             {
@@ -161,7 +284,6 @@ class Program
                     }
                 }
                 
-                //Region 3 — Sub-Menus: one while loop per entity (inside the main menu switch-case case)
                 
                 
                 //Region 4 — Operations: the if-else logic for each CRUD action
