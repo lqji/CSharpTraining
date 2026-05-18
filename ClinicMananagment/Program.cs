@@ -33,7 +33,8 @@ class Program
                 int appointmentCount = 0;
                 
                 //Region 2 — Main Menu: the outer while loop + switch-case
-                while (true)
+                bool exit = false;
+                while (exit == false)
                 {
                     Console.Clear();
                     Console.WriteLine("╔══════════════════════════════════════╗");
@@ -359,6 +360,7 @@ class Program
                                 switch (appointmentChoice)
                                 {
                                     case 1:
+                                        
                                         break;
                                     case 2:
                                         break;
@@ -377,6 +379,7 @@ class Program
                             break;
                         case 0:
                             Console.WriteLine("");
+                            exit = true;
                             break;
                         default:
                             Console.WriteLine("do NOT exit the program");

@@ -216,9 +216,7 @@ class Program
                 }
 
                 Console.WriteLine("Press Enter to continue...");
-                Console.ReadLine();
-                if (patientChoice == 0) break;
-
+                Console.ReadKey();
             }
         }
     }
