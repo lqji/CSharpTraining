@@ -59,10 +59,6 @@ class Program
                         Console.Write("Nightly rate: ");
                         nightRate = Convert.ToDouble(Console.ReadLine());
                         rNum = Random.Shared.Next(1, 505);
-                        Console.WriteLine("Choose a check in date (DD/MM/YYYY): ");
-                        ChekInD = DateTime.Parse(Console.ReadLine());
-                        Console.WriteLine("Choose a check Out date (DD/MM/YYYY): ");
-                        CheckOutD = DateTime.Parse(Console.ReadLine());
                         Console.Write("Enter Room Notes: ");
                         rNotes = Console.ReadLine();
                         Console.Write("Enter how many nights guest is staying: ");
@@ -96,6 +92,19 @@ class Program
                   
                     break;
                 case 2:
+                    if (isGuestReg == false)
+                    {
+                        Console.WriteLine("No Guests Registered ");
+
+                    }
+                    else
+                    {
+                        ChekInD = DateTime.Today;
+                        CheckOutD = ChekInD.AddDays(nightNum);
+                        isCheckedIn = true;
+                        Console.WriteLine("Guest is Checked in at: " + ChekInD.ToString());
+                    }
+                    
                     break;
                 case 3:
                     break;
