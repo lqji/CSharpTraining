@@ -43,7 +43,7 @@ class Program
             options = Convert.ToInt32(Console.ReadLine());
             switch (options)
             {
-                case 0:
+                case 0: // add guest
                     if (isGuestReg == true)
                     {
                         Console.WriteLine("guest already have been registered");
@@ -64,12 +64,12 @@ class Program
                         Console.Write("Enter how many nights guest is staying: ");
                         nightNum = Convert.ToInt32(Console.ReadLine());
                         Console.WriteLine("Discount: ");
-                        discount =float.Parse(Console.ReadLine());
+                       // discount =float.Parse(Console.ReadLine());
                         isGuestReg = true;
                     }
                     
                     break;
-                case 1:
+                case 1: // display guest info
                     if (isGuestReg == false)
                     {
                         Console.WriteLine("No Guests Registered ");
@@ -91,7 +91,7 @@ class Program
                     }
                   
                     break;
-                case 2:
+                case 2: // guest check in
                     if (isGuestReg == false)
                     {
                         Console.WriteLine("No Guests Registered ");
@@ -106,7 +106,31 @@ class Program
                     }
                     
                     break;
-                case 3:
+                case 3: // Guest check out and bill
+                    if (isGuestReg == false)
+                    {
+                        Console.WriteLine("No Guests Registered");
+                    }
+                    else if (isCheckedIn == false)
+                    {
+                        Console.WriteLine("Guest is not check in yet");
+                    }
+                    else
+                    {
+                        double billAmount = (nightRate * nightNum);
+                        double disAmount =  billAmount - discount;
+                        Console.WriteLine("Guest Check-Out at: " + CheckOutD.ToString());
+                        Console.WriteLine("");
+                        Console.WriteLine(" -------- Bill ----------");
+                        Console.WriteLine("");
+
+                        Console.WriteLine("Bill Amount: " + Math.Round(billAmount));
+                        Console.WriteLine("discount: " + Math.Round(discount));
+                        Console.WriteLine("Total Amount: " + Math.Round(disAmount));
+                        Console.WriteLine("");
+                        Console.WriteLine(" -------------------------");
+                    }
+
                     break;
                 case 4:
                     break;
