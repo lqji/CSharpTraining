@@ -25,7 +25,7 @@ class Program
 
     static void PrintMainMenu()
     {
-        Console.WriteLine("----Welcome To The library----");
+        Console.WriteLine("---- Welcome To The library ----");
         Console.WriteLine("");
         Console.WriteLine(" 0) Register Member ");
         Console.WriteLine(" 1) Display Member Profile ");
@@ -61,6 +61,23 @@ class Program
             RegDate = DateTime.Now;
         }
     }
+
+    static void DisplayMemberInfo()
+    {
+        Console.WriteLine("Enter Member's Name");
+        if (Console.ReadLine() == mName)
+        { Console.WriteLine("---- Member Info -----");
+            Console.WriteLine("");
+            Console.WriteLine("Member Id: " + mId);
+            Console.WriteLine("");
+            Console.WriteLine("Member Name: " + mName);
+            Console.WriteLine("");
+            Console.WriteLine("Member Email: " + mEmail);
+            Console.WriteLine("");
+            Console.WriteLine("Member Register Date: " + Convert.ToString(RegDate));
+            Console.WriteLine("");
+        }
+    }
     
     
     static void Main(string[] args)
@@ -78,6 +95,10 @@ class Program
                     RegisterMember();
                     break;
                 case 1:
+                    DisplayMemberInfo();
+                    break;
+                case 2:
+                    
                     break;
             }
             Console.WriteLine("press any key to continue");
