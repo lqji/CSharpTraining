@@ -24,21 +24,10 @@ class Program
 
     //Other
     static string booksearch;
-    static void SearchBook()
-    {
-        Console.Write("Enter Book Name: ");
-        booksearch = Console.ReadLine().Substring(1).ToLower();
-        bTitle = bTitle.Substring(1).ToLower();
-        
-        if (booksearch == bTitle)
-        {
-            Console.WriteLine("Book: " + bTitle);
-        }
-        else
-        {
-            Console.WriteLine("Book Not Found");
-        }
-    }
+    
+    
+    
+ 
 
     static void PrintMainMenu()
     {
@@ -96,6 +85,33 @@ class Program
         }
     }
     
+    static bool SearchBook(string searchKeyword)
+    {
+        string bTitleLow = bTitle.ToLower();
+        string SKLOW = searchKeyword.ToLower();
+
+        if (bTitleLow.Contains(SKLOW))
+        {
+            return true;
+        }
+        else
+        {
+            return false; 
+        }
+
+    }
+
+    static void BorrowBook()
+    {
+        if (bAvCopy == 0)
+        {
+            Console.WriteLine("there are no available copies");
+        }
+        else
+        {
+            
+        }
+    }
     
     static void Main(string[] args)
     {
@@ -115,7 +131,17 @@ class Program
                     DisplayMemberInfo();
                     break;
                 case 2:
-                    SearchBook();
+                    Console.Write("Enter a keyword to search for a book: ");
+                    string keyword = Console.ReadLine();
+                    bool isFound = SearchBook(keyword);
+                    if (isFound)
+                    {
+                        Console.WriteLine("the book is Found");
+                    }
+                    else
+                    {
+                        Console.WriteLine("the book is not found");
+                    }
                     break;
             }
             Console.WriteLine("press any key to continue");
