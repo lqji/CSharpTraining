@@ -10,6 +10,7 @@ class Program
     static string mExpierD = "";
     static string mTier = "";
     static bool isMReg = false;
+    static DateTime RegDate;
         
     //book values
     static string bTitle = "";
@@ -44,6 +45,22 @@ class Program
         Console.Write("Enter your choice: ");
         option = Convert.ToInt32(Console.ReadLine());
     }
+
+    static void RegisterMember()
+    {
+        if (isMReg == true)
+        {
+            Console.WriteLine("Member is already registered");
+        }
+        else
+        {
+            Console.Write("Enter member name: ");
+            mName = Console.ReadLine();
+            Console.Write("Enter Member Email: ");
+            mEmail = Console.ReadLine();
+            RegDate = DateTime.Now;
+        }
+    }
     
     
     static void Main(string[] args)
@@ -58,6 +75,9 @@ class Program
             switch (option)
             {
                 case 0:
+                    RegisterMember();
+                    break;
+                case 1:
                     break;
             }
             Console.WriteLine("press any key to continue");
