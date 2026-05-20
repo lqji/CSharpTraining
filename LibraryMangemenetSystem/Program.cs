@@ -21,9 +21,6 @@ class Program
     static int totalBBorow = 0;
     static int totalFPaid = 0;
     static int option = 1;
-
-    //Other
-    static string booksearch;
     
     
     
@@ -53,36 +50,26 @@ class Program
     }
 
     static void RegisterMember()
-    {
-        if (isMReg == true)
-        {
-            Console.WriteLine("Member is already registered");
-        }
-        else
         {
             Console.Write("Enter member name: ");
             mName = Console.ReadLine();
             Console.Write("Enter Member Email: ");
             mEmail = Console.ReadLine();
             RegDate = DateTime.Now;
+            isMReg = true;
         }
-    }
+    
 
     static void DisplayMemberInfo()
     {
-        Console.WriteLine("Enter Member's Name");
-        if (Console.ReadLine() == mName)
-        { Console.WriteLine("---- Member Info -----");
+            Console.WriteLine("---- Member Info -----");
             Console.WriteLine("");
-            Console.WriteLine("Member Id: " + mId);
+            Console.WriteLine("Member Id: ".PadLeft(15)+ " " + mId);
+            Console.WriteLine("Member Name: ".PadLeft(15)+ " " + mName);
+            Console.WriteLine("Member Email: ".PadLeft(15)+ " " + mEmail);
             Console.WriteLine("");
-            Console.WriteLine("Member Name: " + mName);
-            Console.WriteLine("");
-            Console.WriteLine("Member Email: " + mEmail);
-            Console.WriteLine("");
-            Console.WriteLine("Member Register Date: " + Convert.ToString(RegDate));
-            Console.WriteLine("");
-        }
+            Console.WriteLine("Member Register Date: ".PadLeft(15) + Convert.ToString(RegDate));
+            Console.WriteLine("---------------------------");
     }
     
     static bool SearchBook(string searchKeyword)
@@ -125,10 +112,25 @@ class Program
             switch (option)
             {
                 case 0:
-                    RegisterMember();
+                    if (isMReg == true)
+                    {
+                        Console.WriteLine("User is Already Registered");
+                    }
+                    else
+                    {
+                        RegisterMember();
+
+                    }
                     break;
                 case 1:
-                    DisplayMemberInfo();
+                    if (!isMReg)
+                    {
+                        Console.WriteLine("Member is not Registered");
+                    }
+                    else
+                    {
+                        DisplayMemberInfo();
+                    }
                     break;
                 case 2:
                     Console.Write("Enter a keyword to search for a book: ");
