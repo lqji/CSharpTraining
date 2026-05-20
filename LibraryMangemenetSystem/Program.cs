@@ -22,6 +22,23 @@ class Program
     static int totalFPaid = 0;
     static int option = 1;
 
+    //Other
+    static string booksearch;
+    static void SearchBook()
+    {
+        Console.Write("Enter Book Name: ");
+        booksearch = Console.ReadLine().Substring(1).ToLower();
+        bTitle = bTitle.Substring(1).ToLower();
+        
+        if (booksearch == bTitle)
+        {
+            Console.WriteLine("Book: " + bTitle);
+        }
+        else
+        {
+            Console.WriteLine("Book Not Found");
+        }
+    }
 
     static void PrintMainMenu()
     {
@@ -98,7 +115,7 @@ class Program
                     DisplayMemberInfo();
                     break;
                 case 2:
-                    
+                    SearchBook();
                     break;
             }
             Console.WriteLine("press any key to continue");
