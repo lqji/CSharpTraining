@@ -44,9 +44,8 @@ class Program
         Console.WriteLine(" 11) Calculate Renewal Fee ");
         Console.WriteLine(" 12) Update Member Email ");
         Console.WriteLine(" 13) Session Summary ");
+        Console.WriteLine(" 14) Exit ");
         Console.WriteLine("");
-        Console.Write("Enter your choice: ");
-        option = Convert.ToInt32(Console.ReadLine());
     }
 
     static void RegisterMember()
@@ -95,25 +94,27 @@ class Program
         totalBBorow++;
     }
 
-    static void RegBook(string Title, string Author, int AvCopy ,string Genere = "Unspecfied" )
+    static void RegBook(string title, string author, int avCopy, string genre = "Unspecified")
     {
-        Console.Write("Enter Book Title: ");
-        Title = Console.ReadLine().Trim();
-        Console.Write("Enter Book Author name: ");
-        Author = Console.ReadLine().Trim();
-        Console.Write("Enter Number Of Copies: ");
-        AvCopy = Convert.ToInt32(Console.ReadLine());
-        Console.Write("Enter Book Genere: ");
-        Genere = Console.ReadLine().Trim();
-        isBReg = true;
-        bTitle = Title;
-        bAuthor = Author;
-        bAvCopy = AvCopy ;
-        bGenere = Genere;
+        bTitle = title.Trim();
+        bAuthor = author.Trim();
+        bAvCopy = avCopy;
+        bGenere = genre.Trim();
+        
         
         Console.WriteLine("Book is Registerd Succesfully");
         
         Console.WriteLine("System Note: Title is " + bTitle.Length + " characters long.");
+    }
+
+    static void DisBook(string title, string author, int avCopy, string genre)
+    {
+        Console.WriteLine("---- Registered Book Details -----");
+        Console.WriteLine("Title:".PadRight(15) + title);
+        Console.WriteLine("Author:".PadRight(15) + author);
+        Console.WriteLine("Copies:".PadRight(15) + Convert.ToString(avCopy));
+        Console.WriteLine("Genre:".PadRight(15) + genre);
+        Console.WriteLine("----------------------------------");
     }
     
 static void Main(string[] args)
@@ -125,6 +126,9 @@ static void Main(string[] args)
         while (exit == false)
         {
             PrintMainMenu();
+            Console.Write("Enter your choice: ");
+            option = Convert.ToInt32(Console.ReadLine());
+            
             switch (option)
             {
                 case 0: // registiring member
@@ -185,20 +189,38 @@ static void Main(string[] args)
                     
                     break;
                 case 8 : // Registing a book
-                    if (isBReg == true)
+                    Console.Write("Enter Book Title: ");
+                    string inputTitle = Console.ReadLine();
+                    Console.Write("Enter Book Author name: ");
+                    string inputAuthor = Console.ReadLine();
+                    Console.Write("Enter Number Of Copies: ");
+                    int inputCopies = Convert.ToInt32(Console.ReadLine());
+                    Console.Write("Enter Book Genre (or press Enter to skip): ");
+                    string inputGenre = Console.ReadLine();
+                    isBReg = true;
+    
+                    if (inputGenre == "")
                     {
-                        Console.WriteLine("book is already registerd");
+                        RegBook(inputTitle, inputAuthor, inputCopies);
                     }
                     else
                     {
-                        RegBook(bTitle,bAuthor,bAvCopy,bGenere);
+                        RegBook(inputTitle, inputAuthor, inputCopies, inputGenre);
                     }
                     break;
-                case 9 :
+                case 9 : 
+                    
                     
                     break;
-                case 10 :
-                    
+                case 10 : // Display Book Info
+                    if (isBReg == true)
+                    {
+                        DisBook(title: bTitle, author: bAuthor, avCopy: bAvCopy, genre: bGenere);
+                    }
+                    else
+                    {
+                        Console.WriteLine("No Book Registerd yet");
+                    }
                     break;
                 case 11 :
                     
@@ -206,7 +228,10 @@ static void Main(string[] args)
                 case 12 :
                     
                     break;
-                case 13 : //exit
+                case 13 : //Session Summary 
+             
+                    break;
+                case 4 : //Exit 
                     Console.WriteLine("Exiting...");
                     exit = true;
                     break;
