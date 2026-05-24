@@ -172,12 +172,16 @@ static void Main(string[] args)
                 case 3: // Borowing a book
                     if (isBReg && bAvCopy > 0)
                     {
-;                       
+;
+                        BorrowBook(ref bAvCopy);
+                        Console.WriteLine("book borrowed successfully.");
                     }
                     else
                     {
                         Console.WriteLine("there are no available copies");
                     }
+                    break;
+                case 4:
                     break;
                 case 5 :
                     
@@ -231,7 +235,7 @@ static void Main(string[] args)
                 case 13 : //Session Summary 
              
                     break;
-                case 4 : //Exit 
+                case 14 : //Exit 
                     Console.WriteLine("Exiting...");
                     exit = true;
                     break;
