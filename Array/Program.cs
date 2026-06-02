@@ -1,4 +1,6 @@
 ﻿using System.Numerics;
+using System;
+using System.Collections.Generic;
 
 namespace Array;
 
@@ -6,11 +8,11 @@ class Program
 {
     static void Main(string[] args)
     {
-     bool keepRunning = true;
+        bool keepRunning = true;
 
         while (keepRunning)
         {
-            Console.WriteLine("\n=== Lists Practice Menu ===");
+            Console.WriteLine("\n=== C# Practice Menu ===");
             Console.WriteLine("1. Temperature Log");
             Console.WriteLine("2. Student Score Board");
             Console.WriteLine("3. Product Price Finder");
@@ -46,6 +48,7 @@ class Program
 
     static void RunTemperatureLog()
     {
+        Console.WriteLine("--- Problem 1: Temperature Log ---");
         List<double> temperatures = new List<double> { 32.1, 34.5, 33.0, 31.2, 35.6, 36.1, 34.2 };
         
         for (int i = 0; i < temperatures.Count; i++)
@@ -57,19 +60,27 @@ class Program
 
     static void RunStudentScoreBoard()
     {
+        Console.WriteLine("--- Problem 2: Student Score Board ---");
         List<int> scores = new List<int> { 85, 92, 78, 90, 88, 76 };
         
-        Console.WriteLine("Original:");
-        foreach (int score in scores) Console.WriteLine(score);
+        Console.WriteLine("Original Order:");
+        foreach (int score in scores)
+        {
+            Console.WriteLine(score);
+        }
         
         scores.Reverse();
         
-        Console.WriteLine("\nReversed:");
-        foreach (int score in scores) Console.WriteLine(score);
+        Console.WriteLine("\nReversed Order:");
+        foreach (int score in scores)
+        {
+            Console.WriteLine(score);
+        }
     }
 
     static void RunProductPriceFinder()
     {
+        Console.WriteLine("--- Problem 3: Product Price Finder ---");
         List<double> prices = new List<double> { 4.99, 12.50, 8.99, 15.00, 3.50 };
         
         for (int i = 0; i < prices.Count; i++)
@@ -80,26 +91,40 @@ class Program
         double targetPrice = 8.99;
         int priceIndex = prices.IndexOf(targetPrice);
         
-        if (priceIndex != -1) Console.WriteLine($"\nTarget price {targetPrice} found at index {priceIndex}");
-        else Console.WriteLine($"\nTarget price {targetPrice} not found.");
+        if (priceIndex != -1)
+        {
+            Console.WriteLine($"\nTarget price {targetPrice} found at index {priceIndex}");
+        }
+        else
+        {
+            Console.WriteLine($"\nTarget price {targetPrice} not found.");
+        }
     }
 
     static void RunRaceFinishTimes()
     {
+        Console.WriteLine("--- Problem 4: Race Finish Times ---");
         List<int> finishTimes = new List<int> { 320, 280, 310, 295, 275, 305, 330, 290 };
         
-        Console.WriteLine("Original:");
-        foreach (int time in finishTimes) Console.WriteLine(time);
+        Console.WriteLine("Original Times:");
+        foreach (int time in finishTimes)
+        {
+            Console.WriteLine(time);
+        }
         
         finishTimes.Sort();
         
-        Console.WriteLine("\nSorted (Fastest First):");
-        foreach (int time in finishTimes) Console.WriteLine(time);
+        Console.WriteLine("\nSorted Times (Fastest First):");
+        foreach (int time in finishTimes)
+        {
+            Console.WriteLine(time);
+        }
         Console.WriteLine($"\nTotal participants: {finishTimes.Count}");
     }
 
     static void RunClassroomGradeReport()
     {
+        Console.WriteLine("--- Problem 5: Classroom Grade Report ---");
         List<int> grades = new List<int> { 85, 92, 78, 90, 88, 76, 100, 65, 82, 95 };
         
         grades.Sort();
@@ -113,6 +138,7 @@ class Program
 
     static void RunWarehouseInventoryCheck()
     {
+        Console.WriteLine("--- Problem 6: Warehouse Inventory Check ---");
         List<int> quantities = new List<int> { 15, 42, 8, 23, 19, 50, 4, 12 };
         int totalStock = 0;
         
@@ -127,23 +153,36 @@ class Program
         int targetQty = 23;
         int qtyIndex = quantities.IndexOf(targetQty);
         
-        if (qtyIndex != -1) Console.WriteLine($"Target {targetQty} found at slot {qtyIndex}");
-        else Console.WriteLine($"Target {targetQty} not found");
+        if (qtyIndex != -1)
+        {
+            Console.WriteLine($"Target quantity {targetQty} found at slot index {qtyIndex}");
+        }
+        else
+        {
+            Console.WriteLine($"Target quantity {targetQty} not found");
+        }
     }
 
     static void RunLibraryBookShelfScanner()
     {
+        Console.WriteLine("--- Problem 7: Library Book Shelf Scanner ---");
         List<int> copies = new List<int> { 3, 5, 1, 0, 8, 2, 4, 12, 0 };
         
-        Console.WriteLine("Original:");
-        foreach (int copy in copies) Console.WriteLine(copy);
+        Console.WriteLine("Original Copies List:");
+        foreach (int copy in copies)
+        {
+            Console.WriteLine(copy);
+        }
         
         copies.Sort();
         
-        Console.WriteLine("\nSorted:");
-        foreach (int copy in copies) Console.WriteLine(copy);
+        Console.WriteLine("\nSorted Copies List:");
+        foreach (int copy in copies)
+        {
+            Console.WriteLine(copy);
+        }
         
-        Console.WriteLine($"\nMost copies: {copies[copies.Count - 1]}");
+        Console.WriteLine($"\nMost copies available for a single title: {copies[copies.Count - 1]}");
         
         bool hasZero = false;
         for (int i = 0; i < copies.Count; i++)
@@ -155,8 +194,14 @@ class Program
             }
         }
         
-        if (hasZero) Console.WriteLine("Alert: Zero copies found.");
-        else Console.WriteLine("All titles have copies.");
+        if (hasZero)
+        {
+            Console.WriteLine("Alert: There is at least one title with zero copies.");
+        }
+        else
+        {
+            Console.WriteLine("All titles currently have at least one copy.");
+        }
     }
-    }
+}
     
