@@ -9,6 +9,11 @@ class Program
     static void Main(string[] args)
     {
         bool keepRunning = true;
+        List<int> players = new List<int>();
+        players.Add(1);
+        players.Add(4);
+        Console.WriteLine(players);
+
 
         while (keepRunning)
         {
