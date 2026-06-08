@@ -58,7 +58,7 @@ class Program
                 case "2": ExecuteCase02(); break;
                 case "3": ExecuteCase03(); break;
                 case "4": ExecuteCase04(); break;
-              //  case "5": ExecuteCase05(); break;
+                case "5": ExecuteCase05(); break;
             //    case "6": ExecuteCase06(); break;
              //   case "7": ExecuteCase07(); break;
              //   case "8": ExecuteCase08(); break;
@@ -262,5 +262,71 @@ class Program
             Console.WriteLine($"Departure Date : {date}");
             Console.WriteLine("========================================");
         }
+        static void ExecuteCase05()
+    {
+        Console.WriteLine("--- [Case 05] Update a Booking ---");
+        Console.Write("Enter Ticket ID: ");
+        string tkt = Console.ReadLine().Trim().ToUpper();
+
+        if (!bookingRecord.ContainsKey(tkt))
+        {
+            Console.WriteLine("Error: Only tickets with an existing booking can be updated.");
+            return;
+        }
+
+        for (int i = 0; i < cancelledTickets.Count; i++)
+        {
+            if (cancelledTickets[i] == tkt)
+            {
+                Console.WriteLine("Error: Cancelled tickets cannot be updated.");
+                return;
+            }
+        }
+
+        string currentRecord = bookingRecord[tkt];
+        string[] currentTokens = currentRecord.Split('|');
+        string currentFlight = currentTokens[0];
+        string currentDate = currentTokens[1];
+
+        Console.WriteLine($"\nCurrent Booking State: Flight {currentFlight} on {currentDate}");
+        Console.WriteLine("1. Change flight only\n2. Change date only\n3. Change both\n0. Cancel update");
+        Console.Write("Select update mode: ");
+        string subChoice = Console.ReadLine();
+
+        if (subChoice == "0")
+        {
+            Console.WriteLine("Update aborted.");
+            return;
+        }
+
+        string nextFlight = currentFlight;
+        string nextDate = currentDate;
+
+        if (subChoice == "1" || subChoice == "3")
+        {
+            Console.WriteLine("\nAvailable Flights:");
+            for (int i = 0; i < flightNumbers.Length; i++) Console.WriteLine($"[{i}] {flightNumbers[i]}");
+            Console.Write("Select flight index: ");
+            if (int.TryParse(Console.ReadLine(), out int idx) && idx >= 0 && idx < flightNumbers.Length)
+                nextFlight = flightNumbers[idx];
+            else { Console.WriteLine("Invalid input. Aborting."); return; }
+        }
+
+        if (subChoice == "2" || subChoice == "3")
+        {
+            Console.WriteLine("\nAvailable Dates:");
+            for (int i = 0; i < availableDates.Count; i++) Console.WriteLine($"[{i}] {availableDates[i]}");
+            Console.Write("Select date index: ");
+            if (int.TryParse(Console.ReadLine(), out int idx) && idx >= 0 && idx < availableDates.Count)
+                nextDate = availableDates[idx];
+            else { Console.WriteLine("Invalid input. Aborting."); return; }
+        }
+
+        bookingRecord[tkt] = nextFlight + "|" + nextDate;
+
+        Console.WriteLine("\nUpdate Execution Confirmed!");
+        Console.WriteLine(string.Format("{0,-25} | {1,-25}", "OLD BOOKING", "NEW BOOKING"));
+        Console.WriteLine(string.Format("{0,-25} | {1,-25}", $"{currentFlight} ({currentDate})", $"{nextFlight} ({nextDate})"));
+    }
     }
 }
