@@ -4,8 +4,7 @@ class Program
 {
     //VARIABLES 
  
-    static List<string> passengerNames = new List<string>()
-        { "Alice Smith", "Bob Jones", "Charlie Brown", "Diana Prince", "Evan Wright" };
+    static List<string> passengerNames = new List<string>() { "Ahmed Al-Balushi", "Fatma Al-Riyami", "Mohammed Al-Siyabi", "Aisha Al-Zadjali", "Omar Al-Kharusi" };
 
     static List<string> ticketNumbers = new List<string>() { "TKT-001", "TKT-002", "TKT-003", "TKT-004", "TKT-005" };
 
@@ -58,13 +57,13 @@ class Program
                 case "1": ExecuteCase01(); break;
                 case "2": ExecuteCase02(); break;
                 case "3": ExecuteCase03(); break;
-                case "4": ExecuteCase04(); break;
-                case "5": ExecuteCase05(); break;
-                case "6": ExecuteCase06(); break;
-                case "7": ExecuteCase07(); break;
-                case "8": ExecuteCase08(); break;
-                case "9": ExecuteCase09(); break;
-                case "10": ExecuteCase10(); break;
+             //   case "4": ExecuteCase04(); break;
+              //  case "5": ExecuteCase05(); break;
+            //    case "6": ExecuteCase06(); break;
+             //   case "7": ExecuteCase07(); break;
+             //   case "8": ExecuteCase08(); break;
+              //  case "9": ExecuteCase09(); break;
+            //    case "10": ExecuteCase10(); break;
                 case "0": running = false; break;
                 default:
                     Console.WriteLine("Invalid choice. Please enter a number between 0 and 10.");
@@ -135,5 +134,82 @@ class Program
             Console.WriteLine(new string('-', 55));
             Console.WriteLine($"Total Passengers Registered: {passengerNames.Count}");
         }
+        static void ExecuteCase03()
+    {
+        Console.WriteLine("--- [Case 03] Book a Flight Ticket ---");
+        Console.Write("Enter Ticket ID (e.g., TKT-001): ");
+        string tkt = Console.ReadLine().Trim().ToUpper();
+
+        // Validate structural existence
+        int targetIndex = -1;
+        for (int i = 0; i < ticketNumbers.Count; i++)
+        {
+            if (ticketNumbers[i] == tkt)
+            {
+                targetIndex = i;
+                break;
+            }
+        }
+
+        if (targetIndex == -1)
+        {
+            Console.WriteLine("Error: Ticket ID does not exist.");
+            return;
+        }
+
+        // Check for cancellations
+        for (int i = 0; i < cancelledTickets.Count; i++)
+        {
+            if (cancelledTickets[i] == tkt)
+            {
+                Console.WriteLine("Error: Cannot book a flight for a cancelled ticket.");
+                return;
+            }
+        }
+
+        // Check for existing booking
+        if (bookingRecord.ContainsKey(tkt))
+        {
+            Console.WriteLine("Error: Ticket already has a booking. Use Case 05 to update.");
+            return;
+        }
+
+        // Select Flight Code
+        Console.WriteLine("\nAvailable Flights:");
+        for (int i = 0; i < flightNumbers.Length; i++)
+        {
+            Console.WriteLine($"[{i}] {flightNumbers[i]}");
+        }
+        Console.Write("Select flight index: ");
+        if (!int.TryParse(Console.ReadLine(), out int flightIndex) || flightIndex < 0 || flightIndex >= flightNumbers.Length)
+        {
+            Console.WriteLine("Error: Invalid flight selection.");
+            return;
+        }
+
+        // Select Travel Date
+        Console.WriteLine("\nAvailable Booking Dates:");
+        for (int i = 0; i < availableDates.Count; i++)
+        {
+            Console.WriteLine($"[{i}] {availableDates[i]}");
+        }
+        Console.Write("Select date index: ");
+        if (!int.TryParse(Console.ReadLine(), out int dateIndex) || dateIndex < 0 || dateIndex >= availableDates.Count)
+        {
+            Console.WriteLine("Error: Invalid date selection.");
+            return;
+        }
+
+        // Persist to Dictionary
+        string flightChoice = flightNumbers[flightIndex];
+        string dateChoice = availableDates[dateIndex];
+        string compositeValue = flightChoice + "|" + dateChoice;
+
+        bookingRecord[tkt] = compositeValue;
+
+        Console.WriteLine("\nBooking Confirmed!");
+        Console.WriteLine($"Ticket: {tkt} | Passenger: {passengerNames[targetIndex]} | Flight: {flightChoice} | Date: {dateChoice}");
+    }
+        
     }
 }
