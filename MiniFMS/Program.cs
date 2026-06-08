@@ -57,7 +57,7 @@ class Program
                 case "1": ExecuteCase01(); break;
                 case "2": ExecuteCase02(); break;
                 case "3": ExecuteCase03(); break;
-             //   case "4": ExecuteCase04(); break;
+                case "4": ExecuteCase04(); break;
               //  case "5": ExecuteCase05(); break;
             //    case "6": ExecuteCase06(); break;
              //   case "7": ExecuteCase07(); break;
@@ -210,6 +210,57 @@ class Program
         Console.WriteLine("\nBooking Confirmed!");
         Console.WriteLine($"Ticket: {tkt} | Passenger: {passengerNames[targetIndex]} | Flight: {flightChoice} | Date: {dateChoice}");
     }
-        
+        static void ExecuteCase04()
+        {
+            Console.WriteLine("--- [Case 04] View Booking Details ---");
+            Console.Write("Enter Ticket ID: ");
+            string tkt = Console.ReadLine().Trim().ToUpper();
+
+            int targetIndex = -1;
+            for (int i = 0; i < ticketNumbers.Count; i++)
+            {
+                if (ticketNumbers[i] == tkt)
+                {
+                    targetIndex = i;
+                    break;
+                }
+            }
+
+            if (targetIndex == -1)
+            {
+                Console.WriteLine("Error: Ticket ID not found.");
+                return;
+            }
+
+            for (int i = 0; i < cancelledTickets.Count; i++)
+            {
+                if (cancelledTickets[i] == tkt)
+                {
+                    Console.WriteLine("Status Notice: This ticket has been cancelled.");
+                    return;
+                }
+            }
+
+            
+            if (!bookingRecord.ContainsKey(tkt))
+            {
+                Console.WriteLine("No booking found for this ticket.");
+                return;
+            }
+
+            string rawRecord = bookingRecord[tkt];
+            string[] tokens = rawRecord.Split('|');
+            string flight = tokens[0];
+            string date = tokens[1];
+
+            Console.WriteLine("\n========================================");
+            Console.WriteLine("             BOARDING CARD              ");
+            Console.WriteLine("========================================");
+            Console.WriteLine($"Passenger Name : {passengerNames[targetIndex]}");
+            Console.WriteLine($"Ticket ID      : {tkt}");
+            Console.WriteLine($"Assigned Flight: {flight}");
+            Console.WriteLine($"Departure Date : {date}");
+            Console.WriteLine("========================================");
+        }
     }
 }
