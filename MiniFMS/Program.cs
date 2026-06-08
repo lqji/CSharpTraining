@@ -59,7 +59,7 @@ class Program
                 case "3": ExecuteCase03(); break;
                 case "4": ExecuteCase04(); break;
                 case "5": ExecuteCase05(); break;
-            //    case "6": ExecuteCase06(); break;
+               case "6": ExecuteCase06(); break;
              //   case "7": ExecuteCase07(); break;
              //   case "8": ExecuteCase08(); break;
               //  case "9": ExecuteCase09(); break;
@@ -327,6 +327,77 @@ class Program
         Console.WriteLine("\nUpdate Execution Confirmed!");
         Console.WriteLine(string.Format("{0,-25} | {1,-25}", "OLD BOOKING", "NEW BOOKING"));
         Console.WriteLine(string.Format("{0,-25} | {1,-25}", $"{currentFlight} ({currentDate})", $"{nextFlight} ({nextDate})"));
+    }
+        static void ExecuteCase06()
+    {
+        Console.WriteLine("--- [Case 06] Cancel a Ticket ---");
+        Console.Write("Enter Ticket ID to cancel: ");
+        string tkt = Console.ReadLine().Trim().ToUpper();
+
+        int targetIndex = -1;
+        for (int i = 0; i < ticketNumbers.Count; i++)
+        {
+            if (ticketNumbers[i] == tkt) { targetIndex = i; break; }
+        }
+
+        if (targetIndex == -1)
+        {
+            Console.WriteLine("Error: Ticket ID execution failed. Not found.");
+            return;
+        }
+
+        for (int i = 0; i < cancelledTickets.Count; i++)
+        {
+            if (cancelledTickets[i] == tkt)
+            {
+                Console.WriteLine("Error: A ticket already inside cancelled registry cannot be re-cancelled.");
+                return;
+            }
+        }
+
+        string passengerName = passengerNames[targetIndex];
+
+        if (bookingRecord.ContainsKey(tkt))
+        {
+            bookingRecord.Remove(tkt);
+            Console.WriteLine($"[System Update]: Active booking link dropped for {tkt}.");
+        }
+
+        cancelledTickets.Add(tkt);
+
+        Queue<string> tempQueue = new Queue<string>();
+        bool queueRemoved = false;
+        while (checkedInQueue.Count > 0)
+        {
+            string item = checkedInQueue.Dequeue();
+            if (item.Equals(passengerName, StringComparison.OrdinalIgnoreCase))
+                queueRemoved = true;
+            else
+                tempQueue.Enqueue(item);
+        }
+        checkedInQueue = tempQueue;
+        if (queueRemoved) Console.WriteLine($"[Queue Evacuation]: '{passengerName}' removed from Check-In Queue.");
+
+        Stack<string> intermediateStack = new Stack<string>();
+        Stack<string> tempStack = new Stack<string>();
+        bool stackRemoved = false;
+
+        while (boardingStack.Count > 0)
+        {
+            string p = boardingStack.Pop();
+            if (p.Equals(passengerName, StringComparison.OrdinalIgnoreCase))
+                stackRemoved = true;
+            else
+                intermediateStack.Push(p); 
+        }
+        while (intermediateStack.Count > 0)
+        {
+            tempStack.Push(intermediateStack.Pop()); 
+        }
+        boardingStack = tempStack;
+        if (stackRemoved) Console.WriteLine($"[Stack Evacuation]: '{passengerName}' dropped out from Boarding Stack.");
+
+        Console.WriteLine($"\nCancellation complete for: {passengerName} ({tkt})");
     }
     }
 }
