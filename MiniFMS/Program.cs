@@ -60,10 +60,10 @@ class Program
                 case "4": ExecuteCase04(); break;
                 case "5": ExecuteCase05(); break;
                case "6": ExecuteCase06(); break;
-             //   case "7": ExecuteCase07(); break;
-             //   case "8": ExecuteCase08(); break;
-              //  case "9": ExecuteCase09(); break;
-            //    case "10": ExecuteCase10(); break;
+             //    case "7": ExecuteCase07(); break;
+             //    case "8": ExecuteCase08(); break;
+             //    case "9": ExecuteCase09(); break;
+             //    case "10": ExecuteCase10(); break;
                 case "0": running = false; break;
                 default:
                     Console.WriteLine("Invalid choice. Please enter a number between 0 and 10.");
